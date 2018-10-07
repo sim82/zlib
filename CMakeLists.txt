@@ -77,7 +77,7 @@ add_library(zlib ${ZLIB_SRCS} ${ZLIB_ASMS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} 
 #
 check_function_exists(fseeko HAVE_FSEEKO)
 if(NOT HAVE_FSEEKO)
-    target_compile_definitions( zlib -DNO_FSEEKO)
+    target_compile_definitions( zlib PRIVATE -DNO_FSEEKO)
 endif()
 
 
