@@ -81,9 +81,11 @@ if(NOT HAVE_FSEEKO)
 endif()
 
 
+set(ZLIB_PUBLIC_HDRS ${CMAKE_CURRENT_BINARY_DIR}/zconf.h
+    zlib.h)
+
 target_sources(zlib PRIVATE
-    ${CMAKE_CURRENT_BINARY_DIR}/zconf.h
-    zlib.h
+    ${ZLIB_PUBLIC_HDRS}
 )
 target_sources(zlib PRIVATE
     crc32.h
@@ -174,7 +176,8 @@ install(TARGETS zlib
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}" )
 
-install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION "install")
+
+install(FILES ${ZLIB_PUBLIC_HDRS} DESTINATION include)
 
 target_include_directories(zlib PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
